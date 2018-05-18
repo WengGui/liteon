@@ -1,0 +1,26 @@
+ 0、本地git配置
+	$ git config --global user.name "John Doe"
+	$ git config --global user.email johndoe@example.com
+ 注：第一个要配置的是你个人的用户名称和电子邮件地址。这两条配置很重要，每次 Git 提交时都会引用这两条信息，
+     说明是谁提交了更新，所以会随更新内容一起被永久纳入历史记录
+     写错了就手动删除  .git/config 文件重新配置
+ 1、生成秘钥
+	$ ssh-keygen -t rsa -C "931419175@qq.com"
+ 2、将生成的公钥交给GitHub管理
+ 3、将本地仓库与GitHub仓库关联起来（在GitHub新建仓库时有提示）
+	$ git remote add origin https://github.com/WengGui/liteon
+ 注：若关联错误时
+	# 检查远程仓库配置
+	$ git remote -v  
+	# 删除配置
+	git remote rm origin 
+ 4、同步远程仓库
+	取回远程主机某个分支的更新，再与本地的指定分支合并，
+	$ git pull origin next:master 	# 要取回origin主机的next分支，与本地的master分支合并
+	$ git pull origin next		# 远程分支(next)要与当前分支合并，则冒号后面的部分可以省略
+	上述命令相当于
+	$ git fetch origin	# 取远程分支
+	$ git merge origin/next # 合并分支
+	注：多人协助时，要先pull合并分支，在推送自己的代码
+ 5、上传代码
+	git push -u origin master
